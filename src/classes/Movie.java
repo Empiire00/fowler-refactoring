@@ -1,14 +1,14 @@
 package classes;
 
 public class Movie {
-    private String title;
+    private final String title;
     private int priceCode;
     private MoviePriceCategory priceCategory;
 
-    public Movie(String newtitle, int newpriceCode) {
-        title = newtitle;
-        priceCode = newpriceCode;
-        priceCategory = MoviePriceCategory.values()[newpriceCode];
+    public Movie(String newTitle, int newPriceCode) {
+        title = newTitle;
+        priceCode = newPriceCode;
+        priceCategory = MoviePriceCategory.values()[newPriceCode];
     }
 
     public int getPriceCode() {
@@ -25,5 +25,5 @@ public class Movie {
 
     public String getTitle (){
         return title;
-    };
+    }
 }

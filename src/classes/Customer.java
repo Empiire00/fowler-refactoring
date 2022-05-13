@@ -3,19 +3,19 @@ import java.lang.*;
 import java.util.*;
 
 public class Customer {
-    private String name;
-    private List<Rental> rentals = new ArrayList();
-    public Customer (String newname){
-        name = newname;
-    };
+    private final String name;
+    private final ArrayList<Rental> rentals = new ArrayList<>();
+    public Customer (String newName){
+        name = newName;
+    }
 
     public void addRental(Rental arg) {
         rentals.add(arg);
-    };
+    }
 
     public String getName (){
         return name;
-    };
+    }
 
     public String statement() {
         String statement = getRentalRecordHeader();
@@ -27,23 +27,21 @@ public class Customer {
         String rentalRecord = "";
         double totalAmount = 0;
         int frequentRenterPoints = 0;
-        ListIterator enum_rentals = rentals.listIterator();
-        while (enum_rentals.hasNext()) {
-            double thisAmount = 0;
-            Rental rental = (Rental) enum_rentals.next();
+        for (Rental value : rentals) {
+            double thisAmount;
             //determine amounts for each line
-            thisAmount = rental.getAmountFor();
+            thisAmount = value.getAmountFor();
             frequentRenterPoints = addFrequentRenterPoints(frequentRenterPoints);
-            // add bonus for a two day new release rental
-            if ((rental.getMovie().getPriceCategory() == MoviePriceCategory.NEW_RELEASE) && rental.getDaysRented() > 1)
+            // add bonus for a two-day new release rental
+            if ((value.getMovie().getPriceCategory() == MoviePriceCategory.NEW_RELEASE) && value.getDaysRented() > 1)
                 frequentRenterPoints = addFrequentRenterPoints(frequentRenterPoints);
             //show figures for this rental
-            rentalRecord = "\t" + rental.getMovie().getTitle()+ "\t" + "\t" + rental.getDaysRented() + "\t" + String.valueOf(thisAmount) + "\n";
+            rentalRecord = "\t" + value.getMovie().getTitle() + "\t" + "\t" + value.getDaysRented() + "\t" + thisAmount + "\n";
             totalAmount += thisAmount;
         }
         //add footer lines
-        rentalRecord += "Amount owed is " + String.valueOf(totalAmount) + "\n";
-        rentalRecord += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
+        rentalRecord += "Amount owed is " + totalAmount + "\n";
+        rentalRecord += "You earned " + frequentRenterPoints + " frequent renter points";
         return rentalRecord;
     }
 

@@ -1,12 +1,12 @@
 package classes;
 
 public class Rental {
-    private Movie movie;
+    private final Movie movie;
     private int daysRented;
 
-    public Rental(Movie newmovie, int newdaysRented) {
-        movie = newmovie;
-        daysRented = newdaysRented;
+    public Rental(Movie newMovie, int newDaysRented) {
+        movie = newMovie;
+        daysRented = newDaysRented;
     }
 
     public int getDaysRented() {
@@ -28,7 +28,7 @@ public class Rental {
             case NEW_RELEASE:
                 thisAmount += getDaysRented() * 3;
                 break;
-            case CHILDRENS:
+            case CHILDREN:
                 thisAmount += 1.5;
                 if (getDaysRented() > 3)
                     thisAmount += (getDaysRented() - 3) * 1.5;
