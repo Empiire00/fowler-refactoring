@@ -35,7 +35,7 @@ public class Customer {
             thisAmount = rental.getAmountFor();
             frequentRenterPoints = addFrequentRenterPoints(frequentRenterPoints);
             // add bonus for a two day new release rental
-            if ((rental.getMovie().getPriceCode() == Movie.NEW_RELEASE) && rental.getDaysRented() > 1)
+            if ((rental.getMovie().getPriceCategory() == MoviePriceCategory.NEW_RELEASE) && rental.getDaysRented() > 1)
                 frequentRenterPoints = addFrequentRenterPoints(frequentRenterPoints);
             //show figures for this rental
             rentalRecord = "\t" + rental.getMovie().getTitle()+ "\t" + "\t" + rental.getDaysRented() + "\t" + String.valueOf(thisAmount) + "\n";
