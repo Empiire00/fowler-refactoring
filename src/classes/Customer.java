@@ -1,16 +1,17 @@
 package classes;
 import java.lang.*;
+import java.sql.Array;
 import java.util.*;
 
 public class Customer {
     private String name;
-    private Vector rentals = new Vector();
+    private List<Rental> rentals = new ArrayList();
     public Customer (String newname){
         name = newname;
     };
 
     public void addRental(Rental arg) {
-        rentals.addElement(arg);
+        rentals.add(arg);
     };
 
     public String getName (){
@@ -27,10 +28,10 @@ public class Customer {
         String rentalRecord = "";
         double totalAmount = 0;
         int frequentRenterPoints = 0;
-        Enumeration enum_rentals = rentals.elements();
-        while (enum_rentals.hasMoreElements()) {
+        ListIterator enum_rentals = rentals.listIterator();
+        while (enum_rentals.hasNext()) {
             double thisAmount = 0;
-            Rental rental = (Rental) enum_rentals.nextElement();
+            Rental rental = (Rental) enum_rentals.next();
             //determine amounts for each line
             thisAmount = rental.getAmountFor();
             frequentRenterPoints = addFrequentRenterPoints(frequentRenterPoints);
