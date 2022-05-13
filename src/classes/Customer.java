@@ -1,6 +1,5 @@
 package classes;
 import java.lang.*;
-import java.sql.Array;
 import java.util.*;
 
 public class Customer {
