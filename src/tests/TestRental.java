@@ -10,7 +10,7 @@ public class TestRental {
     private Movie movie;
     @Before
     public void prepare(){
-        movie = new Movie("Test Movie", 10);
+        movie = new Movie("Test Movie", 1);
         rental = new Rental(movie,5);
     }
     @Test

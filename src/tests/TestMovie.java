@@ -11,8 +11,8 @@ public class TestMovie {
     private Movie movie2;
     @Before
     public void prepare(){
-        movie1 = new Movie("Inception", 15);
-        movie2 = new Movie("Matrix", 10);
+        movie1 = new Movie("Inception", 1);
+        movie2 = new Movie("Matrix", 1);
     }
 
     @Test
@@ -21,11 +21,12 @@ public class TestMovie {
     }
     @Test
     public void getPriceCode(){
-        assertEquals(15, movie1.getPriceCode());
+        assertEquals(1, movie1.getPriceCode());
+        assertEquals(MoviePriceCategory.NEW_RELEASE, movie1.getPriceCategory());
     }
     @Test
     public void setPriceCode() {
-        movie2.setPriceCode(18);
-        assertEquals(18, movie2.getPriceCode());
+        movie2.setPriceCode(0);
+        assertEquals(0, movie2.getPriceCode());
     }
 }
